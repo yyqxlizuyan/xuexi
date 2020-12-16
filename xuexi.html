@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>carousel</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            line-height: 1;
+            background: rgb(250, 250, 250);
+        }
+
+        img {
+            vertical-align: bottom;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color:black;
+        }
+        .container {
+            width: 1202px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .fl {
+            float: left;
+        }
+        .fr {
+            float: right;
+        }
+        .clear:after {
+            content: '';
+            display: block;
+            height: 0;
+            clear: both;
+        }
+        .header-top {
+            height: 32px;
+            border-bottom: 1px solid rgba(218, 218, 218, 1);
+        }
+        .header-info {
+            line-height: 32px;
+        }
+        .header-info li {
+            float: left;
+            margin-left: 27px;
+            background: no-repeat left center;
+        }
+        li.iphone {
+            padding-left: 15px;
+        }
+
+        li.weixin {
+            padding-left: 23px;
+        }
+        .header-bottom {
+            height: 100px;
+        }
+        .logo {
+            width: 236px;
+            height: 70px;
+            margin-top: 14px;
+        }
+        .nav {
+            margin-top: 39px;
+        }
+        .nav li {
+            float: left;
+            padding: 0 44px;
+            border-right: 2px solid rgba(0, 0, 0, 1);
+        }
+        li.first {
+            padding-left: 20px;
+        }
+        li.last {
+            border: none;
+            padding-right: 20px;
+        }
+        .nav a {
+            font-size: 16px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 1);
+        }
+        .form {
+            margin-top: 34px;
+        }
+        .form * {
+            float: left;
+        }
+        .form #search {
+            width: 147px;
+            height: 11px;
+            border: 1px solid rgba(208, 61, 61, 1);
+            padding: 9px;
+        }
+        .form img {
+            width: 29px;
+            height: 29px;
+            background: rgba(208, 61, 61,0.5) 
+            
+        }
+        #div2{
+            position:relative;
+            overflow: hidden; 
+            width: 1200px;
+            height: 20px;
+            border: 0px;
+        }
+        #div3{
+            position: absolute;
+            left: 1200px;
+            width:400px;
+            white-space: nowrap;
+        }
+        :focus {
+            outline: none;
+        }
+        .xue{
+            display: inline-block;
+            width:150px;
+            height:30px;
+            float:left;
+            margin:5px;
+        }
+        .hezuo{
+            line-height: 30px;
+        }
+        .banner{
+            width: 1180px;
+            height: 397px;
+            border: 1px solid red;
+            margin: 30px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .slider{
+            width: 8400px;
+            position: absolute;
+            left: -1200px;
+        }
+        .slide{
+            width: 1200px;
+            overflow: hidden;
+            float: left;
+        }
+        .banner>span{
+            display: block;
+            width: 30px;
+            height: 50px;
+            text-align: center;
+            cursor: pointer;
+            color: #fff;
+            top: 175px;
+            line-height: 50px;
+            background: rgb(255,0,0);
+            font-size: 30px;
+            position: absolute;
+            opacity: 0;
+        }
+        #left{
+            left: 30px;
+        }
+        #right{
+            right: 30px;
+        }
+        .navtion{
+            position: absolute;
+            left: 500px;
+            bottom: 20px;
+        }
+        .navtion>li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #ccc;
+            cursor: pointer;
+            margin: 0 10px;
+            border-radius: 50%;
+        }
+        .navtion .active{
+            background: red;
+        }
+        .title {
+            margin-top: 20px;
+            font-size: 20px;
+            color: rgba(32, 32, 32, 1);
+        }
+        .title .small {
+            margin-top: 15px;
+            margin-bottom: 34px;
+            font-size: 20px;
+        }
+        .course-small {
+            width: 705px;
+        }
+        .course-item {
+            float: left;
+            position: relative;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .course-small.fl .course-item {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+        .course-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 45px;
+            background: rgba(200，10，100, 0.5);
+            opacity: 0.8;
+            font-weight: bold;
+            color: rgba(0,0,0, 1);
+        }
+        .course-info h3 {
+            font-size: 14px;
+            padding: 7px 0;
+        }
+        .course-info p {
+             font-size: 8px;
+        }
+        .course-big .course-item {
+            margin-left: 0;
+        }
+        .course-big .course-info {
+            height: 58px;
+            font-size: 16px;
+        }
+        .course-big h3 {
+            font-size: 16px;
+            padding: 10px 0;
+        }
+        .course-big p {
+            font-size: 14px;
+        }
+        .server {
+            text-align: center;
+        }
+        .server ul {
+            display: inline-block;
+        }
+        .server li {
+            float: left;
+        }
+        .server-info {
+            height: 135px;
+            background: rgba(58，58，58, 0.8);
+        }
+        .server-info li {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            padding: 18px 82px;
+        }
+        .server-info img{
+            width: 50px;
+            height: 50px;
+        }
+        .server-info p {
+            padding-top: 15px;
+        }
+        .footer {
+            height: 180px;
+            padding-top: 18px;
+            background: rgba(58, 58, 58, 1);
+            text-align: center;
+        }
+        .footer h4 {
+            padding: 15px 0 23px;
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+        }
+        .footer ul {
+            display: inline-block;
+        }
+        .footer li {
+            float: left;
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            padding: 0 12px;
+            border-right: 2px solid rgba(255, 255, 255, 1);
+        }
+        .footer li a{
+            color: rgba(255,255,255, 1);
+        }
+        .footer li.last {
+            border: none;
+        }
+        .footer p {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 1);
+            margin-top: 65px;
+        }
+        #box{
+            width: 400px;
+            height: 400px;
+            margin:0px auto;
+            display: none;
+        }
+        #box4{
+            width:300px;
+            font-size: 20px;
+            padding-bottom: 2px;
+            line-height:40px;
+            background: red;
+            text-align: center;
+        }
+        #box1{
+            width:300px;
+            height:80px;
+        }
+        #box2{
+            width:300px;
+            height:40px;
+            padding-left: 5px;
+            font-size: 15px;
+            line-height: 30px;
+            border:1px solid black;
+        }
+        #box3{
+            width:300px;
+            height:25px;
+            font-size: 8px;
+            line-height:20px;
+        }
+        #box5{
+            position:absolute;
+            top:202px;
+            left:650px;
+            font-size:2px;
+        }
+        input{
+            border: 0px;
+            outline:none;
+        }
+        #sub{
+            font-size:15px;
+            border:none;
+            outline:none;
+            background-color: red;
+        }
+        p{
+            color:#ccc;
+            font-size:10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" style="display:block">
+        <div class="header">
+            <div class="header-top">
+                <div class="container">
+                    <ul class="header-info fr">
+                        <li id="load">登陆</li>
+                        <li class="iphone">移动客户端</li>
+                        <li class="weixin">微信</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container header-bottom clear">
+                <img src="images/学习平台.png" alt="logo图" class="logo fl">
+                <ul class="nav fl clear">
+                    <li class="first"><a href="#">首页</a></li>
+                    <li><a href="#">种类</a></li>
+                    <li><a href="#">课程</a></li>
+                    <li class="last"><a href="#">报名</a></li>
+                </ul>
+                <form class="form clear fr">
+                    <input type="text" placeholder="老师/种类/视频" id="search"/>
+                    <button id="btn"><img src="images/搜索.jpg"></button>
+                </form>
+            </div>
+        </div>
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+        <div class="xuexiao">
+            <ul class="clear">
+                <li class="xue hezuo">合作学校共684所</li>        
+                <li><img src="images/武大.png" class="xue"></li>
+                <li><img src="images/南大.png" class="xue"></li>
+                <li><img src="images/浙大.png" class="xue"></li>
+                <li><img src="images/北大.png" class="xue"></li>
+                <li><img src="images/哈工大.png" class="xue"></li>
+                <li><img src="images/上交大.png" class="xue"></li>
+            </ul>
+        </div>
+        <div class="banner" id="banner">
+            <div class="slider" id="slider">
+                <div class="slide"><img src="images/banner-5.jpg" height="397" width="1200" alt=""></div>
+                <div class="slide"><img src="images/banner1.jpg" height="397" width="1200" alt=""></div>
+                <div class="slide"><img src="images/banner2.jpg" height="397" width="1200" alt=""></div>
+                <div class="slide"><img src="images/banner3.jpg" height="397" width="1200" alt=""></div>
+                <div class="slide"><img src="images/banner4.jpg" height="397" width="1200" alt=""></div>
+                <div class="slide"><img src="images/banner-5.jpg" height="397" width="1200" alt=""></div>
+                <div class="slide"><img src="images/banner1.jpg" height="397" width="1200" alt=""></div>
+            </div>
+            <span id="left">《</span>
+            <span id="right">》</span>
+            <ul class="navtion" id="navtion">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    <div class="container">
+                <h4 class="title">
+                精品课程
+                </h4>
+            </div>
+            <div class="container clear course">
+                <ul class="course-big fl clear">
+                    <li class="course-item">
+                        <img src="images/雅思.jpg" width="497" height="492">
+                        <div class="course-info">
+                            <h5>雅思英语</h5>
+                            <p>北京大学</p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="course-small fr clear">
+                    <li class="course-item">
+                        <img src="images/计算机考研.png" width="342" height="242">
+                        <div class="course-info">
+                            <h5>计算机考研</h5>
+                            <p>河北师范大学</p>
+                        </div>
+                    </li>
+                    <li class="course-item">
+                        <img src="images/纲要.png" width="342" height="242">
+                        <div class="course-info">
+                            <h5>中国近代史纲要</h5>
+                            <p>南京大学</p>
+                        </div>
+                    </li>
+                    <li class="course-item">
+                        <img src="images/线代.png" width="342" height="242">
+                        <div class="course-info">
+                            <h5>线性代数</h5>
+                            <p>浙江大学</p></div>
+                    </li>
+                    <li class="course-item">
+                        <img src="images/高数.png" width="342" height="242">
+                        <div class="course-info">
+                            <h5>高等数学</h5>
+                            <p>武汉大学</p></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="server">
+                <div class="server-info">
+                    <ul class="clear">
+                        <li>
+                            <img src="images/私人定制.jpg" alt="" />
+                        <p>私人定制</p>
+                        </li>
+                        <li>
+                            <img src="images/联系我们.jpg" alt="" />
+                            <p>联系我们</p>
+                        </li>
+                        <li>
+                            <img src="images/加入我们.png" alt="" />
+                            <p>加入我们</p>
+                        </li>
+                        <li>
+                            <img src="images/VIP.jpg" alt="" />
+                            <p>会员课程</p>
+                        </li>
+                        <li>
+                            <img src="images/张唯为.jpg">
+                            <p>会员名师</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">
+            <h4>活动</h4>
+            <ul class="clear">
+                <li><a href="http://www.baidu.com">优惠券</a></li>
+                <li><a href="http://www.baidu.com">限时打折</a></li>
+                <li><a href="http://www.baidu.com">限时免费</a></li>
+                <li><a href="http://www.baidu.com">团购</a></li>
+                <li><a href="http://www.baidu.com">积分兑换</a></li>
+                <li class="last"><a href="http://www.baidu.com">私人定制</a></li>
+            </ul>
+                <p>© 2005-2016  学习平台 版权所有，并保留所有权利。冀ICP备15029982号-1</p>
+            </div>
+        </div>
+        <div id="box">
+            <div id="box1">
+                <div id="box2">
+                    用户名<input id="name" type="text">
+                </div>
+                <div id="box3">
+                    <p id="uname"></p>
+                </div>
+            </div>
+            <div id="box1">
+                <div id="box2">
+                    密码<input id="pass" type="password">
+                </div>
+                <div id="box3">
+                    <p id="upass"></p>
+                </div>
+            </div>
+            <div id="box4">
+                <button id="sub">立即登录</button>
+            </div>
+           <p> 
+                <a href="http://www.baidu.com">立即注册</a>
+                <div id="box5"><a href="http://www.baidu.com">忘记密码</a></div>
+            </p>
+        </div>
+    <script>
+        function getStyle(obj, attr){
+            if(obj.currentStyle){
+                return obj.currentStyle[attr];
+            } else {
+                return getComputedStyle(obj, null)[attr];
+            }
+        }
+        function animate(obj,json,callback){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                var isStop = true;
+                for(var attr in json){
+                    var now = 0;
+                    if(attr == 'opacity'){
+                        now = parseInt(getStyle(obj,attr)*100);
+                    }else{
+                        now = parseInt(getStyle(obj,attr));
+                    }
+                    var speed = (json[attr] - now) / 8;
+                    speed = speed>0?Math.ceil(speed):Math.floor(speed);
+                    var cur = now + speed;
+                    if(attr == 'opacity'){
+                        obj.style[attr] = cur / 100;
+                    }else{
+                        obj.style[attr] = cur + 'px';
+                    }
+                    if(json[attr] !== cur){
+                        isStop = false;
+                    }
+                }
+                if(isStop){
+                    clearInterval(obj.timer);
+                    callback&&callback();
+                }
+            }, 30)
+        }
+        var banner = document.getElementById('banner');
+        var oNavlist = document.getElementById('navtion').children;
+        var slider = document.getElementById('slider');
+        var left = document.getElementById('left');
+        var right = document.getElementById('right');
+        var oname=document.getElementById("name");
+        var box=document.getElementById("box");
+        var opass=document.getElementById("pass");
+        var uname=document.getElementById("uname");
+        var upass=document.getElementById("upass");
+        var sub=document.getElementById("sub");
+        var load=document.getElementById("load");
+        var div1=document.getElementById("div1");
+        var div3=document.getElementById("div3");
+        var sear=document.getElementById("search");
+        var btn=document.getElementById("btn");
+        var index = 1;
+        var timer, timeid;
+        var isStart=false;
+        load.onclick=function(){
+            div1.style.display="none";
+            box.style.display="block";
+        }
+        oname.onfocus=function(){
+            uname.innerHTML="支持中文数字";        
+        }
+        oname.onblur=function(){
+            if(oname.value==""){
+                uname.innerHTML="用户名不能为空";
+            }
+        }
+        pass.onfocus=function(){
+            upass.innerHTML="建议使用两种字符组合";
+        }
+        pass.onblur=function(){
+            if(pass.value==''){
+                upass.innerHTML="密码不能为空";
+            }
+        }
+        sub.onclick=function(){
+            div1.style.display="block";
+            box.style.display="none";
+            alert("登录成功！");
+        }
+        sear.onkeypress = function(e){
+             if(e.keyCode==13){
+                var baidu;
+                if(sear.value==""){
+                    baidu=open('http://www.baidu.com');
+                }else{
+                    baidu=open('https://www.2345.com/?k843261073');
+                }
+            }
+        }
+        btn.onclick=function(){
+            var baidu;
+            if(sear.value==""){
+                baidu=open('http://www.baidu.com');
+            }else{
+                baidu=open('https://www.2345.com/?k843261073');
+            }                   
+        }
+        div1.onmousedown=function(){
+            div3.innerHTML = "通告：本网站处于维修期间，如果给您带来不便，敬请谅解！";
+            div3.style.left = '1200px';
+            var timer = setInterval(function(){
+                div3.style.left = parseInt(div3.style.left) - 1 + 'px';
+                if(parseInt(div3.style.left)<-div3.offsetWidth){
+                    div3.style.left = '1200px';
+                    clearInterval(timer);
+                }
+            },300)
+        }
+        banner.onmouseover = function(){
+            animate(left,{opacity:50})
+            animate(right,{opacity:50})
+            clearInterval(timer)
+        }
+        banner.onmouseout = function(){
+            animate(left,{opacity:0})
+            animate(right,{opacity:0})
+            timer = setInterval(next, 3000);
+        }
+        right.onclick = next;
+        left.onclick =function(){
+            if(isStart){
+                return;
+            }
+            isStart = true;
+            index--;
+            navmove();
+            animate(slider,{left:-1200*index},function(){
+                if(index==0){
+                    slider.style.left = '-6000px';
+                    index = 5;
+                }
+                isStart = false;
+            });
+        }
+        for(var i=0; i<oNavlist.length; i++){
+            oNavlist[i].index = i;
+            oNavlist[i].onclick = function(){
+                index = this.index+1;
+                navmove();
+                animate(slider,{left:-1200*index});
+            }
+        }
+        function next(){
+            if(isStart){
+                return;
+            }
+            isStart = true;
+            index++;
+            navmove();
+            animate(slider,{left:-1200*index},function(){
+                if(index==6){
+                    slider.style.left = '-1200px';
+                    index = 1;
+                }
+                isStart = false;
+            });
+        }
+        function navmove(){
+            for( var i=0; i<oNavlist.length; i++ ){
+                oNavlist[i].className = "";
+            }
+            if(index >5 ){
+                oNavlist[0].className = "active";
+            }else if(index<=0){
+                oNavlist[4].className = "active";
+            }else {
+                oNavlist[index-1].className = "active";
+            }
+        }
+        timer = setInterval(next, 3000);
+    </script>
+</body>
+</html>
